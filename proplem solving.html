@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Power of 2 Calculator</title>
+</head>
+<body>
+    <!-- 5-->
+    <script>
+        function calculatePowers() {
+            const inputArray = [];
+            
+            for (let i = 0; i < 3; i++) {
+                const userInput = prompt(`Enter number ${i + 1}:`);
+                const num = parseFloat(userInput);
+                
+                if (!isNaN(num)) {
+                    inputArray.push(num);
+                } else {
+                    alert(`Invalid input for number ${i + 1}. Please enter a valid number.`);
+                    return; 
+                }
+            }
+
+            const powersArray = inputArray.map(num => Math.pow(2, num));
+            alert(`Powers of the numbers: [${powersArray}]`);
+        }
+
+        calculatePowers(); 
+    </script>
+
+
+    <!-- 6-->
+
+
+
+    <div>
+        <label for="numbersInput">Enter numbers or string :</label>
+        <input type="text" id="numbersInput">
+        <button onclick="classifyNumbers()">click</button>
+    </div>
+    <div id="result"></div>
+
+    <script>
+        function classifyNumbers() {
+            const numbersInput = document.getElementById("numbersInput").value;
+            const numbersArray = numbersInput.split(',').map(num => parseFloat(num.trim()));
+            const resultDiv = document.getElementById("result");
+
+            const classificationArray = numbersArray.map(num => {
+                if (!isNaN(num)) {
+                    return num % 2 === 0 ? 'even' : 'odd';
+                } else {
+                    return 'N/A';
+                }
+            });
+
+            resultDiv.textContent = `Classification: [${classificationArray.join(', ')}]`;
+        }
+    </script>
+
+    <!-- 7-->
+
+    <div>
+        <label for="numberInput">Enter numbers separated by commas:</label>
+        <input type="text" id="numberInput">
+        <button onclick="processInput()">Calculate</button>
+    </div>
+    <div id="output"></div>
+
+    <script>
+        function processInput() {
+            const inputElement = document.getElementById("numberInput");
+            const outputElement = document.getElementById("output");
+
+            const inputText = inputElement.value;
+            const numbers = inputText.split(',').map(num => parseInt(num.trim()));
+
+            const output = numbers.map(function (number) {
+                if (isNaN(number)) {
+                    return 'N/A';
+                } else if (number % 3 === 0 && number % 5 === 0) {
+                    return 'Fizz Buzz';
+                } else if (number % 3 === 0) {
+                    return 'Fizz';
+                } else if (number % 5 === 0) {
+                    return 'Buzz';
+                } else {
+                    return number;
+                }
+            });
+
+            outputElement.textContent = 'Output: ' + output.join(', ');
+        }
+    </script>
+
+</body>
+</html>
